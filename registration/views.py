@@ -4,6 +4,7 @@ from braces.views import LoginRequiredMixin, AnonymousRequiredMixin
 from django.views.generic.edit import FormView, UpdateView
 from django.core.urlresolvers import reverse_lazy
 from registration.forms import *
+
 # Create your views here.
 class Home(TemplateView):
 
