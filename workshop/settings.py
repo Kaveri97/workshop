@@ -22,8 +22,6 @@ SECRET_KEY = 'e+ioqyqa#(s*2+q+l2g4tqbss(!6d=6$c#2to)_@^%8j@cx*9+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
-
 ALLOWED_HOSTS = []
 
 
@@ -49,6 +47,22 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'workshop.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 WSGI_APPLICATION = 'workshop.wsgi.application'
 
@@ -83,7 +97,7 @@ USE_TZ = True
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
-STATIC_URL = '/static/'
+
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (MEDIA_ROOT,)
