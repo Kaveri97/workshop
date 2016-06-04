@@ -11,79 +11,65 @@
     <script src="{% static 'js/bootstrap.min.js' %}" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 </head>
-<body background="{%  static '2.jpg' %}">
+<body background="{%  static '3.jpg' %}">
 
-    <nav class="navbar navbar-Success">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">My Mail</a>
-            </div>
+<nav class="navbar navbar-Success">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">My Mail</a>
+        </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
 
 
 
-                </ul>
-                </li>
-                </ul>
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-warning">Submit</button>
-                </form>
-                <ul class="nav navbar-nav navbar-right">
+            </ul>
+            </li>
+            </ul>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-warning">Submit</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Others<span class="caret"></span></a>
-
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Join<span class="caret"></span></a>
+                    {% if user.is_anonymous %}
                         <ul class="dropdown-menu">
-                            <li><a href="{%  url 'login' %}">Sign in</a></li>
-                            <li><a href="{%  url 'register_user' %}">Sign up</a></li>
+                        <li><a href="{%  url 'login' %}">Sign in</a></li>
+                        <li><a href="{%  url 'register_user' %}">Sign up</a></li>
                         </ul>
-                    </li>
+
+                    {% else %}
+                        <ul class="dropdown-menu">
+                        <li><a href="{%  url 'logout' %}">Sign out</a></li>
+                        </ul>
+                    {% endif %}
+
+                </li>
 
 
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
 
 <div class="col-md-6 col-md-offset-3">
 
-    <div class="panel panel-primary">
-        <div class="panel-heading">Sign in</div>
-        <div class="panel-body">
-            <form>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
 
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Remember Password
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-warning">Sign in</button>
-            </form>
-        </div>
-    </div>
 </div>
-</div>
+
 
 
 <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
