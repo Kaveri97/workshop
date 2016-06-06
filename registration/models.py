@@ -87,10 +87,18 @@ class User(AbstractBaseUser):
     def get_user_id(self):
         return self.user_id
 
-@property
-def is_staff(self):
-    return self.is_admin
-def __unicode__(self):
-    return self.username
+    @property
+    def is_staff(self):
+        return self.is_admin
+    def __unicode__(self):
+        return self.username
+
+class Chocolate(models.Model):
+    chocolate_id = models.AutoField(primary_key=True)
+    name = models.CharField(_('Chocolate Name'),max_length=100,blank=True )
+    description =  models.CharField(_('Chocolate Description'),max_length=1000,blank=True )
+    price =  models.IntegerField(_('Chocolate Price'),
+                                 validators=[MaxValueValidator(1000), MinValueValidator(0)],
+                                 help_text=_('4 digits maximum'), blank=True, null=True)
 
 

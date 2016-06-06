@@ -6,6 +6,7 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
-    url(r'^$', UserRegistrationView.as_view(), name='register_user')
+    url(r'^$', UserRegistrationView.as_view(), name='register_user'),
+ url(r'^chocolate/add', AddChocolateView.as_view(), name='add_chocolate')
 
 ]

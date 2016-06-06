@@ -40,12 +40,17 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Others<span class="caret"></span></a>
-
+                        <a class="btn-new btn-nav btn-white" data-toggle="dropdown"><i class="fa fa-user fa-fw"></i>
+                                   {% if request.user.user_first_name %}
+                                   {{ request.user.user_first_name }}
+                                   {% elif request.user.username %}
+                                   {{ request.user.username }}
+                                   {% else %}
+                                   {{ request.user.email }}
+                                   {% endif %}
                         <ul class="dropdown-menu">
-                            <li><a href="{% url 'login' %}">Sign in</a></li>
-
-                        </ul>
+                        <li><a href="{%  url 'logout' %}">Sign out</a></li></ul>
+                         </a>
                     </li>
 
 
@@ -67,11 +72,11 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2 style="text-align: center">Sign Up</h2>
+                    <h2 style="text-align: center">Add Chocolate</h2>
                 </div> <!-- panel-heading -->
                 <div class="panel-body">
                     <form class="form-horizontal well" id="registerForm" method="POST"
-                          enctype="multipart/form-data" >
+                          enctype="multipart/form-data" action="">
                         <fieldset>
                             {% csrf_token %} {% load tz %}
                             {% for field in form.visible_fields %}
@@ -95,7 +100,7 @@
                             <div class="form-group" style="text-align:center">
                                 <a href="#tf-courses">
                                     <button type="submit" data-loading-text="Creating request..."
-                                            class="btn btn-success solution_buttons">Create Request <i class="fa fa-angle-double-right"></i> </button></a>
+                                            class="btn btn-success solution_buttons">Add Chocolate <i class="fa fa-angle-double-right"></i> </button></a>
                             </div> <!-- form-group -->
                             </fieldset>
                         </form>

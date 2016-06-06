@@ -1,7 +1,7 @@
 {% load staticfiles %}
 <html>
 <head>
-    <title>My Page</title>
+    <title>Django Workshop</title>
     <link rel="stylesheet" href="{%  static 'css/bootstrap.min.css' %}" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     <!-- Optional theme -->
@@ -23,7 +23,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">My Mail</a>
+            <a class="navbar-brand" href="#">Chocolate</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -44,18 +44,30 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Join<span class="caret"></span></a>
+
                     {% if user.is_anonymous %}
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Join<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                         <li><a href="{%  url 'login' %}">Sign in</a></li>
                         <li><a href="{%  url 'register_user' %}">Sign up</a></li>
                         </ul>
 
                     {% else %}
+
+                        <a class="btn-new btn-nav btn-white" data-toggle="dropdown"><i class="fa fa-user fa-fw"></i>
+                                   {% if request.user.user_first_name %}
+                                   {{ request.user.user_first_name }}
+                                   {% elif request.user.username %}
+                                   {{ request.user.username }}
+                                   {% else %}
+                                   {{ request.user.email }}
+                                   {% endif %}
                         <ul class="dropdown-menu">
-                        <li><a href="{%  url 'logout' %}">Sign out</a></li>
+                        <li><a href="{%  url 'logout' %}">Sign out</a></li></ul>
+                         </a>
+
                         </ul>
-                    {% endif %}
+                     {% endif %}
 
                 </li>
 
@@ -64,12 +76,45 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<table class="table table-condensed">
+  <thead>
+  <tr>
+      <td style="color: white">
+          <b>Name</b>
+      </td>
+  <td style="color: white">
+      <b>Description</b>
+  </td>
+  <td style="color: white">
+      <b>Price</b>
+  </td>
+  </tr>
+  <tbody>
+<tr>
+   {{  object_list }}
+{%  for item in object_list %}
+    <tr>
+    <a style="color:#ffffff">
+   <td style="color: white">  Name : {{ item.name}}</td>
+    <td style="color: white">Description : {{  item.description }}</td>
+    <td style="color: white">Price : {{  item.price }}</td>
+    </tr>
+{%  endfor %}
 
-<div class="col-md-6 col-md-offset-3">
+</tbody>
+
+  </thead>
+</table>
 
 
-</div>
-
+{% if user.is_anonymous %}
+{% else %}
+    <div class="col-md-6 col-md-offset-5"  style = "padding-top: 10%;">
+    <a href = "{%  url 'add_chocolate' %}">
+                            <button class = "btn btn-default">Add a chocolate</button>
+        </a>
+                        </div>
+ {% endif %}
 
 
 <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
